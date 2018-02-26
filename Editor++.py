@@ -53,19 +53,7 @@ class Window(QMainWindow):
         editMenu.addAction(cutAction)
         editMenu.addAction(copyAction)
         editMenu.addAction(pasteAction)
-        '''               
-        self.file_toolbar = self.addToolBar("File")
-        self.file_toolbar.addAction(newAction)
-        self.file_toolbar.addAction(openAction)
-        self.file_toolbar.addAction(saveAction)
-        self.file_toolbar.addAction(saveAsAction)
-        
-        
-        self.toolbar = self.addToolBar("Edit")
-        self.toolbar.addAction(cutAction)
-        self.toolbar.addAction(copyAction)
-        self.toolbar.addAction(pasteAction)
-       '''               
+                       
         self.status = self.statusBar()
         
         self.show()
