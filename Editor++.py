@@ -31,6 +31,7 @@ class Window(QMainWindow):
         
         saveAsAction.setShortcut("Ctrl+Shift+s")
         saveAsAction.setStatusTip("Save As")
+        saveAsAction.triggered.connect(self.save_file)
               
         cutAction.setShortcut("Ctrl+X")
         cutAction.setStatusTip("Cut")
@@ -75,8 +76,14 @@ class Window(QMainWindow):
         self.textEdit
         with file:
             text = file.read()
-
             self.textEdit.setText(text)
+            
+    def save_file(self):
+        name = QFileDialog.getSaveFileName(self,"Save File")
+        file = open(name, 'w')
+        text = self.textEdit.toPlainText()
+        file.write(text)
+        file.close()
         
 app = QApplication(sys.argv)
 win = Window()
