@@ -56,7 +56,16 @@ class Window(QMainWindow):
                 
         self.status = self.statusBar()
         
+       font_choice = QAction("Font", self)
+       font_choice.triggered.connect(self.fontchoice)
+       editMenu.addAction(font_choice)
+        
         self.show()
+        
+        def fontchoice(self):
+        font, valid = QFontDialog.getFont()
+        if valid:
+            self.textEdit.setFont(font)
      
         
 app = QApplication(sys.argv)
