@@ -35,12 +35,15 @@ class Window(QMainWindow):
               
         cutAction.setShortcut("Ctrl+X")
         cutAction.setStatusTip("Cut")
+        cutAction.triggered.connect(self.textEdit.cut)
                 
         copyAction.setShortcut("Ctrl+C")
         copyAction.setStatusTip("Copy")
+        copyAction.triggered.connect(self.textEdit.copy)
                
         pasteAction.setShortcut("Ctrl+V")
         pasteAction.setStatusTip("Paste")
+        pasteAction.triggered.connect(self.textEdit.paste)
                       
         menubar = self.menuBar()
         
