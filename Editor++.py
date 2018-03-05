@@ -57,9 +57,9 @@ class Window(QMainWindow):
                 
         self.status = self.statusBar()
         
-       font_choice = QAction("Font", self)
-       font_choice.triggered.connect(self.fontchoice)
-       editMenu.addAction(font_choice)
+        font_choice = QAction("Font", self)
+        font_choice.triggered.connect(self.fontchoice)
+        editMenu.addAction(font_choice)
         
         self.show()
         
