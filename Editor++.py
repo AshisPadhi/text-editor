@@ -18,6 +18,7 @@ class Window(QMainWindow):
         cutAction = QAction("&Cut",self)
         copyAction = QAction("&Copy",self)
         pasteAction = QAction("&Paste",self)
+        exitAction = QAction("&Exit", self)
         
         newAction.setShortcut("Ctrl+n")
         newAction.setStatusTip("New File")
@@ -44,6 +45,10 @@ class Window(QMainWindow):
         pasteAction.setShortcut("Ctrl+V")
         pasteAction.setStatusTip("Paste")
         pasteAction.triggered.connect(self.textEdit.paste)
+        
+        exitAction.setShortcut("Ctrl+Shift+E")
+        exitAction.setStatusTip("Leave the app")
+        exitAction.triggered.connect(self.close_application)
                       
         menubar = self.menuBar()
         
@@ -87,6 +92,16 @@ class Window(QMainWindow):
         text = self.textEdit.toPlainText()
         file.write(text)
         file.close()
+        
+    def close_application(self):
+        choose = QMessageBox.question(self, 'Exit',
+                                            'You Sure You Really Wanna Quit?',
+                                            QMessageBox.Yes | QMessageBox.No)
+        if choose == QMessageBox.Yes:
+            sys.exit()
+        else:
+            pass
+
         
 app = QApplication(sys.argv)
 win = Window()
