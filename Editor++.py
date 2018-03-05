@@ -24,6 +24,7 @@ class Window(QMainWindow):
         
         openAction.setShortcut("Ctrl+O")
         openAction.setStatusTip("Open File")
+        openAction.triggered.connect(self.open_file)
                 
         saveAction.setShortcut("Ctrl+s")
         saveAction.setStatusTip("Save File")
@@ -62,11 +63,20 @@ class Window(QMainWindow):
         
         self.show()
         
-        def fontchoice(self):
+    def fontchoice(self):
         font, valid = QFontDialog.getFont()
         if valid:
             self.textEdit.setFont(font)
      
+    def open_file(self):
+        name = QFileDialog.getOpenFileName(self,'Open File')
+        file = open(name, 'r+')
+
+        self.textEdit
+        with file:
+            text = file.read()
+
+            self.textEdit.setText(text)
         
 app = QApplication(sys.argv)
 win = Window()
