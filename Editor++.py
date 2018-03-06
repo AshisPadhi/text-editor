@@ -19,6 +19,9 @@ class Window(QMainWindow):
         copyAction = QAction("&Copy",self)
         pasteAction = QAction("&Paste",self)
         exitAction = QAction("&Exit", self)
+        undoAction = QAction("&Undo", self)
+        redoAction = QAction("&Redo", self)
+
         
         newAction.setShortcut("Ctrl+n")
         newAction.setStatusTip("New File")
@@ -46,6 +49,14 @@ class Window(QMainWindow):
         pasteAction.setStatusTip("Paste")
         pasteAction.triggered.connect(self.textEdit.paste)
         
+        undoAction.setShortcut("Ctrl+Z")
+        undoAction.setStatusTip("Undo")
+        undoAction.triggered.connect(self.textEdit.undo)
+
+        redoAction.setShortcut("Ctrl+R")
+        redoAction.setStatusTip("Undo")
+        redoAction.triggered.connect(self.textEdit.redo)
+        
         exitAction.setShortcut("Ctrl+Shift+E")
         exitAction.setStatusTip("Leave the app")
         exitAction.triggered.connect(self.close_application)
@@ -63,6 +74,8 @@ class Window(QMainWindow):
         editMenu.addAction(cutAction)
         editMenu.addAction(copyAction)
         editMenu.addAction(pasteAction)
+        editMenu.addAction(undoAction)
+        editMenu.addAction(redoAction)
                 
         self.status = self.statusBar()
         
