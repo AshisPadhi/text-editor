@@ -1,4 +1,5 @@
 import sys
+from PyQt4 import QtGui
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
@@ -7,6 +8,11 @@ class Window(QMainWindow):
         super(Window, self).__init__(parent)
         self.setWindowIcon(QIcon("text-editor-icon.png"))
         self.textEdit = QTextEdit(self)
+        
+        self.textEdit.setStyleSheet("color: aqua;"
+        			 "background-color: black;"
+        			 "selection-color: yellow;"
+        			 "selection-background-color: #ff6600;")
         self.setCentralWidget(self.textEdit)
         self.setGeometry(50,50,500,400)
         self.setWindowTitle("Editor++")
@@ -83,6 +89,7 @@ class Window(QMainWindow):
         font_choice.triggered.connect(self.fontchoice)
         editMenu.addAction(font_choice)
         
+        
         self.show()
         
     def fontchoice(self):
@@ -119,4 +126,5 @@ class Window(QMainWindow):
 app = QApplication(sys.argv)
 win = Window()
 sys.exit(app.exec_())
+
 
