@@ -14,6 +14,7 @@ class Window(QMainWindow):
         			 "selection-color: yellow;"
         			 "selection-background-color: #ff6600;")
         self.setCentralWidget(self.textEdit)
+        self.setWindowOpacity(0.4)
         self.setGeometry(50,50,500,400)
         self.setWindowTitle("Editor++")
         self.setWindowIcon(QIcon("text-editor-icon.png"))
