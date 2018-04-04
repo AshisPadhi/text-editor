@@ -1,23 +1,22 @@
+import os
 import sys
 from PyQt4 import QtGui
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
+import sy
 
 class Window(QMainWindow):
     def __init__(self, fileName=None, parent=None):
         super(Window, self).__init__(parent)
-        self.setWindowIcon(QIcon("text-editor-icon.png"))
+        self.setWindowIcon(QIcon(os.path.join('Assets','icon.png')))
         self.textEdit = QTextEdit(self)
         
-        self.textEdit.setStyleSheet("color: aqua;"
-        			 "background-color: black;"
-        			 "selection-color: yellow;"
-        			 "selection-background-color: #ff6600;")
+        self.highlighter=sy.Highlighter(self.textEdit.document())
         self.setCentralWidget(self.textEdit)
         self.setWindowOpacity(0.4)
         self.setGeometry(50,50,500,400)
         self.setWindowTitle("Editor++")
-        self.setWindowIcon(QIcon("text-editor-icon.png"))
+        self.setWindowIcon(QIcon(os.path.join('Assets','icon.png')))
         newAction = QAction("&New",self)
         openAction = QAction("&Open",self)
         saveAction = QAction("&Save",self)
@@ -28,6 +27,9 @@ class Window(QMainWindow):
         exitAction = QAction("&Exit", self)
         undoAction = QAction("&Undo", self)
         redoAction = QAction("&Redo", self)
+        invertAction = QAction("&Invert Colors", self)
+        invertAction.setStatusTip("Invert Colors")
+        invertAction.triggered.connect(self.invert)
 
         
         newAction.setShortcut("Ctrl+n")
@@ -83,6 +85,7 @@ class Window(QMainWindow):
         editMenu.addAction(pasteAction)
         editMenu.addAction(undoAction)
         editMenu.addAction(redoAction)
+        editMenu.addAction(invertAction)
                 
         self.status = self.statusBar()
         
@@ -122,10 +125,18 @@ class Window(QMainWindow):
             sys.exit()
         else:
             pass
+        
+    def invert(self):
+        self.textEdit.setStyleSheet("color: aqua;"
+                                    "background-color: black;"
+                                    "selection-color: yellow;"
+                                    "selection-background-color: #ff6600;")
+
 
         
 app = QApplication(sys.argv)
 win = Window()
 sys.exit(app.exec_())
+
 
 
