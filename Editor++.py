@@ -9,10 +9,7 @@ class Window(QMainWindow):
         self.setWindowIcon(QIcon("text-editor-icon.png"))
         self.textEdit = QTextEdit(self)
         
-        self.textEdit.setStyleSheet("color: aqua;"
-        			 "background-color: black;"
-        			 "selection-color: yellow;"
-        			 "selection-background-color: #ff6600;")
+        
         self.setCentralWidget(self.textEdit)
         self.setWindowOpacity(0.4)
         self.setGeometry(50,50,500,400)
@@ -28,6 +25,9 @@ class Window(QMainWindow):
         exitAction = QAction("&Exit", self)
         undoAction = QAction("&Undo", self)
         redoAction = QAction("&Redo", self)
+        invertAction = QAction("&Invert Colors", self)
+        invertAction.setStatusTip("Invert Colors")
+        invertAction.triggered.connect(self.invert)
 
         
         newAction.setShortcut("Ctrl+n")
@@ -83,6 +83,7 @@ class Window(QMainWindow):
         editMenu.addAction(pasteAction)
         editMenu.addAction(undoAction)
         editMenu.addAction(redoAction)
+        editMenu.addAction(invertAction)
                 
         self.status = self.statusBar()
         
@@ -122,6 +123,13 @@ class Window(QMainWindow):
             sys.exit()
         else:
             pass
+        
+    def invert(self):
+        self.textEdit.setStyleSheet("color: aqua;"
+                                    "background-color: black;"
+                                    "selection-color: yellow;"
+                                    "selection-background-color: #ff6600;")
+
 
         
 app = QApplication(sys.argv)
