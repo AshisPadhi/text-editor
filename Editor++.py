@@ -11,7 +11,11 @@ class Window(QMainWindow):
         self.setWindowIcon(QIcon(os.path.join('Assets','icon.png')))
         self.textEdit = QTextEdit(self)
         
+
         self.highlighter=sy.Highlighter(self.textEdit.document())
+
+        
+
         self.setCentralWidget(self.textEdit)
         self.setWindowOpacity(0.4)
         self.setGeometry(50,50,500,400)
